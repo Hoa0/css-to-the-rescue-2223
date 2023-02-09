@@ -1,0 +1,52 @@
+/* CSS Document - CSS to the rescue */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+/*********************/
+/* CUSTOM PROPERTIES */
+/*********************/
+:root {
+}
+
+/***************************/
+/* GENERAL styles ELEMENTS */
+/***************************/
+
+/* HIDE ELEMENTS*/
+.hide-elements {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+body {
+  background-image: linear-gradient(
+    to bottom,
+    #93e7f0,
+    #79ddf2,
+    #60d2f5,
+    #4ac6f7,
+    #3db9f9,
+    #3db9f9,
+    #3db9f9,
+    #3db9f9,
+    #4ac6f7,
+    #ffffff,
+    #fae192,
+    #f2d2a9,
+    #f6d7b0
+  );
+
+  height: 35em;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
