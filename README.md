@@ -12,5 +12,6 @@ Als eerst ben ik met CSS ‘background-image’ property aan de slag geweest, hi
 
 ### Bronnen
 
-[Background-image linear-gradient css generator](https://mycolor.space/gradient)
-[Linear-gradient](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient)
+- [CSS gradient generator](https://mycolor.space/gradient)
+- [Background-image](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image)
+- [Linear-gradient](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient)
