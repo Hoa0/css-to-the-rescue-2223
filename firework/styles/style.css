@@ -17,7 +17,9 @@
 /***************************/
 
 /* HIDE ELEMENTS*/
-.hide-elements {
+h1,
+h2,
+input {
   clip: rect(0, 0, 0, 0);
   clip-path: inset(50%);
   height: 1px;
@@ -27,7 +29,16 @@
   width: 1px;
 }
 
-body {
+body,
+ul,
+div,
+label {
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+}
+
+main > div:first-of-type {
   background-image: linear-gradient(
     to bottom,
     #93e7f0,
@@ -45,8 +56,148 @@ body {
     #f6d7b0
   );
 
-  height: 35em;
+  height: 100vh;
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+main > div:nth-of-type(2) {
+  background: radial-gradient(
+    ellipse at center,
+    #ffd000 1%,
+    #f9b700 39%,
+    #f9b700 39%,
+    #e06317 100%
+  );
+  height: 4em;
+  width: 4em;
+  border: 0 !important;
+  background-position: -175em -6.4375em;
+  background-size: 175%;
+  box-shadow: 0 0 0.625em 0.125em rgba(255, 107, 0, 0.4),
+    0 0 1.375em 0.6875em rgba(255, 203, 0, 0.13);
+  position: absolute;
+  top: 3em;
+  left: 80%;
+  border-radius: 50%;
+}
+
+/* create the flare*/
+label {
+  position: absolute;
+  bottom: 20%;
+  content: "";
+  display: block;
+  margin: 0 auto;
+  height: 5em;
+  width: 1em;
+  left: 50%;
+  background-image: linear-gradient(
+    150deg,
+    #ff2727 40%,
+    #fff 40% 66%,
+    #ff2727 40%
+  );
+}
+
+label::before {
+  content: "";
+  position: absolute;
+  top: -3.5em;
+  left: -1.4em;
+  border-top: 2em solid transparent;
+  border-right: 2em solid transparent;
+  border-bottom: 2em solid #ff2727;
+  border-left: 2em solid transparent;
+}
+
+label::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 0.15em);
+  width: 0.3em;
+  height: 2em;
+  background-color: #554842;
+  bottom: -2em;
+  border-bottom-right-radius: 60%;
+  border-bottom-left-radius: 60%;
+}
+
+input:checked ~ ul {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+ul {
+  display: none;
+}
+
+input:checked ~ div:first-of-type {
+  background-image: linear-gradient(
+    to bottom,
+    #0e0e0f,
+    #000000,
+    #0eaa71,
+    #4ac6f7,
+    #3db9f9,
+    #3db9f9,
+    #3db9f9,
+    #3db9f9,
+    #4ac6f7,
+    #ffffff,
+    #fae192,
+    #f2d2a9,
+    #f6d7b0
+  );
+  height: 100vh;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+/* waves */
+/* div:nth-of-type(2),
+div:nth-of-type(2)::before,
+div:nth-of-type(2)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250vw;
+  height: 250vw;
+  margin-left: -125vw;
+  transform-origin: 50% 50%;
+  background-color: transparent;
+  border-radius: 38% 42%;
+  animation: spin 16s infinite linear;
+  mix-blend-mode: multiply;
+  background-color: #2ea2bf;
+}
+
+div:nth-of-type(2)::before {
+  width: 105%;
+  height: 95%;
+  margin-top: -125vw;
+  transform-origin: 49% 51%;
+  border-radius: 40% 38%;
+  animation: spin 13s infinite linear;
+  background-color: #35cff5;
+}
+
+div:nth-of-type(2)::after {
+  width: 102%;
+  height: 98%;
+  margin-top: -125vw;
+  transform-origin: 51% 49%;
+  border-radius: 48% 42%;
+  animation: spin 10s infinite linear;
+  background-color: #2e70d2;
+} */
+
+/* waves animation */
+/* @keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+} */
