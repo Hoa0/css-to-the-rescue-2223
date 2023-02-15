@@ -16,7 +16,7 @@ Als eerst ben ik met CSS ‘background-image’ property aan de slag geweest, hi
 
 ## Ontwerp-schetsen + breakedown-schets
 
-<img src="#" width="200">
+<img src="https://github.com/Hoa0/css-to-the-rescue-2223/blob/main/firework/imgWiki/schets-week1-css.png" width="200">
 
 ### Bronnen
 
