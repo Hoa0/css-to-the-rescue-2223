@@ -123,18 +123,17 @@ label::after {
   border-bottom-right-radius: 60%;
   border-bottom-left-radius: 60%;
 }
-
+ul {
+  display: none;
+}
 input:checked ~ ul {
   display: block;
   position: absolute;
   top: 50%;
   left: 50%;
 }
-ul {
-  display: none;
-}
 
-input:checked ~ div:first-of-type {
+input:checked ~ main > div:first-of-type {
   background-image: linear-gradient(
     to bottom,
     #0e0e0f,
