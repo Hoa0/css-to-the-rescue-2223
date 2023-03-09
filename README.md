@@ -2,6 +2,8 @@
 
 Live demo: [firework](https://hoa0.github.io/css-to-the-rescue-2223/firework/index.html)
 
+Bekijk mijn Wiki op [notion](https://special-sprite-fab.notion.site/Css-to-the-rescue-Wiki-6ccdc58539af4b65bc33ac9bca37684e)
+
 ## Week 1
 
 ### Gekozen opdracht:
