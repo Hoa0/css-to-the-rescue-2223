@@ -9,7 +9,14 @@
 /*********************/
 /* CUSTOM PROPERTIES */
 /*********************/
-:root {}
+:root {
+  --whiteColor: #fff;
+  --darkBlue: rgb(5, 19, 72);
+  --bgGradientDay: #93e7f0, #79ddf2, #60d2f5, #4ac6f7, #3db9f9, #3db9f9, #3db9f9,
+    #3db9f9, #4ac6f7, #f8e9b6, #fae192, #f2d2a9, #f6d7b0;
+  --bgGradientNight: #1d1d50, #1a1e53, #171f56, #132059, #0d215c, #042f68,
+    #003d72, #054b7b, #316989, #5c8597, #f8e9b6, #fae192, #f2d2a9, #f6d7b0;
+}
 
 /***************************/
 /* GENERAL styles ELEMENTS */
@@ -25,60 +32,107 @@ input {
   overflow: hidden;
   position: absolute;
   white-space: nowrap;
-  width: 1px;
+  width: 0.3em;
 }
-body{
+
+body {
   overflow: hidden;
 }
+
 body,
 ul,
 div,
 label {
   margin: 0;
   padding: 0;
-  /* overflow: hidden; */
+}
+
+form,
+label,
+ul,
+svg,
+div {
+  z-index: 100;
+}
+
+/* create start button*/
+main > form > label::before {
+  content: "Start animation";
+}
+main > form > label {
+  color: var(--darkBlue);
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  content: "";
+  width: 10em;
+  text-align: center;
+  background-color: #93e7f0;
+  padding: 1em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  border: 0.125em solid var(--darkBlue);
+}
+
+/* Change button to pause animation*/
+body:has(:checked) form > label::after {
+  content: "Pause animation";
+}
+
+body:has(:checked) main > form > label {
+  color: var(--whiteColor);
+  background-color: rgb(5, 19, 72);
+  border: 0.125em solid var(--whiteColor);
+}
+body:has(:checked) form > label::before {
+  content: "";
+}
+
+main > form > label:hover,
+body:has(:checked) main > form > label:hover {
+  color: var(--whiteColor);
+  background-color: rgb(70, 101, 164);
 }
 
 /*background decor beach*/
-main>div:first-of-type {
-  background-image: linear-gradient(to bottom,
-      #93e7f0,
-      #79ddf2,
-      #60d2f5,
-      #4ac6f7,
-      #3db9f9,
-      #3db9f9,
-      #3db9f9,
-      #3db9f9,
-      #4ac6f7,
-      #f8e9b6,
-      #fae192,
-      #f2d2a9,
-      #f6d7b0);
+main > div:first-of-type {
+  background-image: linear-gradient(to bottom, var(--bgGradientDay));
 
   height: 100vh;
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  position: relative;
+  z-index: 1;
 }
 
-/* change background decor, darkmode*/ 
-body:has(:checked) div:first-of-type {
-  background-image: linear-gradient(to bottom, #1d1d50, #1a1e53, #171f56, #132059, #0d215c, #042f68, #003d72, #054b7b, #316989, #5c8597, #89a1a6, #b9bcbc);
-  height: 100vh;
-  margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
- 
+/* change background decor, night*/
+div:first-of-type::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, var(--bgGradientNight));
+  transition: opacity 0.5s ease-out;
+  z-index: 2;
+  opacity: 0;
+}
+
+body:has(:checked) div:first-of-type::after {
+  opacity: 1;
 }
 
 /*create the sun*/
-main>div:nth-of-type(2) {
-  background: radial-gradient(ellipse at center,
-      #ffd000 1%,
-      #f9b700 39%,
-      #f9b700 39%,
-      #e06317 100%);
+main > div:nth-of-type(2) {
+  background: radial-gradient(
+    ellipse at center,
+    #ffd000 1%,
+    #f9b700 39%,
+    #f9b700 39%,
+    #e06317 100%
+  );
   height: 4em;
   width: 4em;
   border: 0 !important;
@@ -93,25 +147,104 @@ main>div:nth-of-type(2) {
 }
 
 body:has(:checked) div:nth-of-type(2) {
-display:none;
+  display: none;
 }
 
 /*moon*/
 body:has(:checked) div:nth-of-type(3) {
-  margin:auto;
-  background-color:transparent;
-  height:7em;
-  width:7em;
-  border-radius:50%;
-  
+  margin: auto;
+  background-color: transparent;
+  height: 7em;
+  width: 7em;
+  border-radius: 50%;
+
   box-shadow: 1em 0.3em 0em rgb(240, 184, 43);
   position: absolute;
   top: 3em;
   left: 80%;
-  
+}
+
+div:nth-of-type(3)::before {
+  transform: translate(-50%, -50%) rotate(25deg) !important;
+}
+
+div:nth-of-type(3)::after {
+  transform: translate(-50%, -50%) rotate(-37deg) !important;
+}
+
+/*show firework*/
+body:has(:checked) div:nth-of-type(4),
+body:has(:checked) div:nth-of-type(7),
+body:has(:checked) div:nth-of-type(8) {
+  animation-play-state: running;
+  opacity: 1;
+  z-index: 3;
+}
+
+/*firework from flare*/
+div:nth-of-type(4),
+div:nth-of-type(4)::before,
+div:nth-of-type(4)::after {
+  --top: 80vh;
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.5vmin;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, #ff0 0.2vmin, #0000 0) 50% 00%,
+    radial-gradient(circle, red 0.3vmin, #0000 0) 00% 50%,
+    radial-gradient(circle, #ff0 0.5vmin, #0000 0) 50% 99%,
+    radial-gradient(circle, red 0.2vmin, #0000 0) 99% 50%,
+    radial-gradient(circle, #ff0 0.3vmin, #0000 0) 80% 90%,
+    radial-gradient(circle, red 0.5vmin, #0000 0) 95% 90%,
+    radial-gradient(circle, #ff0 0.5vmin, #0000 0) 10% 60%,
+    radial-gradient(circle, red 0.2vmin, #0000 0) 31% 80%,
+    radial-gradient(circle, #ff0 0.3vmin, #0000 0) 80% 10%,
+    radial-gradient(circle, red 0.2vmin, #0000 0) 90% 23%,
+    radial-gradient(circle, #ff0 0.3vmin, #0000 0) 45% 20%,
+    radial-gradient(circle, #ff0 0.5vmin, #0000 0) 13% 24%;
+  background-size: 0.5vmin 0.5vmin;
+  background-repeat: no-repeat;
+  animation: fireworkYellowRed 3s infinite;
+  animation-play-state: paused;
+  opacity: 0;
+  z-index: 0;
+}
+/*create Cylinder body*/
+div:nth-of-type(5) {
+  position: absolute;
+  width: 4.5em;
+  height: 3.25em;
+  top: 85%;
+  left: 80%;
+  background: linear-gradient(130deg, #801715 0%, #000000 100%);
+}
+
+/*Cylinder top*/
+div:nth-of-type(5)::before {
+  content: "";
+  position: absolute;
+  top: -0.325em;
+  width: 4.5em;
+  height: 0.7em;
+  background-color: rgb(207, 83, 104);
+  border-radius: 3.75em / 0.625em;
+}
+
+/*Cylinder bottom*/
+div:nth-of-type(5)::after {
+  content: "";
+  position: absolute;
+  top: 1em;
+  width: 4.5em;
+  height: 3.125em;
+  background: linear-gradient(130deg, #801715 0%, #000000 100%);
+  border-radius: 3.75em / 1.5625em;
 }
 /* create the flare*/
-label {
+div:nth-of-type(6) {
   position: absolute;
   bottom: 10%;
   content: "";
@@ -120,13 +253,15 @@ label {
   height: 3em;
   width: 0.8em;
   left: 50%;
-  background-image: linear-gradient(150deg,
-      #ff2727 40%,
-      #fff 40% 66%,
-      #ff2727 40%);
+  background-image: linear-gradient(
+    150deg,
+    #ff2727 40%,
+    var(--whiteColor) 40% 66%,
+    #ff2727 40%
+  );
 }
 
-label::before {
+div:nth-of-type(6)::before {
   content: "";
   position: absolute;
   top: -2.2em;
@@ -137,7 +272,7 @@ label::before {
   border-left: 1.2em solid transparent;
 }
 
-label::after {
+div:nth-of-type(6)::after {
   content: "";
   position: absolute;
   left: calc(50% - 0.15em);
@@ -149,76 +284,115 @@ label::after {
   border-bottom-left-radius: 60%;
 }
 
-ul:first-of-type {
-  overflow: hidden;
-  /* Hide the element content, while height = 0 */
-  height: 0;
-  opacity: 0;
-  transition: height 0ms 400ms, opacity 400ms 0ms;
-}
-
-body:has(:checked) ul {
-  height: auto;
-  opacity: 1;
-  transition: height 0ms 0ms, opacity 600ms 0ms;
-  height: auto;
-  opacity: 1;
-  transition: height 0ms 0ms, opacity 600ms 0ms;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  animation-name: firework;
-  animation-duration: 2s;
-  transition-delay: 2s;
-}
-
-body:has(:checked) label {
+body:has(:checked) div:nth-of-type(6) {
   animation-name: flareHigh;
   animation-duration: 1s;
   /* animation-iteration-count: infinite; */
 }
 
-body:has(:checked) div:nth-of-type(4) {
-	animation-play-state:running;
-} 
-div:nth-of-type(4), div:nth-of-type(4)::before, div:nth-of-type(4)::after{
-  --top: 60vh;
-  content: "";
+/* create second firework*/
+div:nth-of-type(7) {
   position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0.5vmin;
-  aspect-ratio: 1;
-  background:
-    /* random backgrounds */
-    radial-gradient(circle, #ff0 0.2vmin, #0000 0) 50% 00%,
-    radial-gradient(circle, red 0.3vmin, #0000 0) 00% 50%,
-    radial-gradient(circle, #ff0 0.5vmin, #0000 0) 50% 99%,
-    radial-gradient(circle, red 0.2vmin, #0000 0) 99% 50%,
-    radial-gradient(circle, #ff0 0.3vmin, #0000 0) 80% 90%,
-    radial-gradient(circle, red 0.5vmin, #0000 0) 95% 90%,
-    radial-gradient(circle, #ff0 0.5vmin, #0000 0) 10% 60%,
-    radial-gradient(circle, red 0.2vmin, #0000 0) 31% 80%,
-    radial-gradient(circle, #ff0 0.3vmin, #0000 0) 80% 10%,
-    radial-gradient(circle, red 0.2vmin, #0000 0) 90% 23%,
-    radial-gradient(circle, #ff0 0.3vmin, #0000 0) 45% 20%,
-    radial-gradient(circle, #ff0 0.5vmin, #0000 0) 13% 24%
-    ;
-  background-size: 0.5vmin 0.5vmin;
-  background-repeat: no-repeat;
-  animation: fireworkYellowRed 3s infinite;
-   animation-play-state: paused;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: pink;
+  animation: firework-inner 1.8s both infinite;
+  animation-delay: 1.5s;
+  top: 20%;
+  left: 70%;
+  animation-play-state: paused;
+  opacity: 0;
+  z-index: 0;
+}
+div:nth-of-type(8) {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  animation: firework-outer 2s both infinite;
+  animation-delay: 1.8s;
+  top: 20%;
+  left: 70%;
+  animation-play-state: paused;
+  opacity: 0;
+  z-index: 0;
 }
 
-div:nth-of-type(3)::before {
-  transform: translate(-50%, -50%) rotate(25deg) !important; 
+/* Cube */
+ul {
+  transform-style: preserve-3d;
+  transform: scale(0.3) rotateY(185deg) rotateX(110deg) rotateZ(315deg);
+  position: absolute;
+  width: 12.5em;
+  height: 12.5em;
+  top: 70%;
+  left: 60%;
 }
 
-div:nth-of-type(3)::after {
-  transform: translate(-50%, -50%) rotate(-37deg) !important;
+ul > li {
+  width: 100%;
+  height: 100%;
+  background-color: #554531;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/*circles */
+ul > li:nth-of-type(1)::before {
+  content: "";
+  width: 20%;
+  height: 20%;
+  background-color: #b54c45;
+  border-radius: 50%;
+  box-shadow: #b54c45 -50px -50px 0px 0px, #ff8a81 -50px 0px 0px 0px,
+    #b54c45 -50px 50px 0px 0px, #ff8a81 -0px 50px 0px 0px,
+    #b54c45 50px -50px 0px 0px, #ff8a81 50px 0px 0px 0px,
+    #b54c45 50px 50px 0px 0px, #ff8a81 0px -50px 0px 0px;
+}
+
+/*cube sides*/
+ul > li:nth-of-type(1) {
+  transform: translateZ(100px);
+  background-color: #c37272;
+}
+
+ul > li:nth-of-type(2) {
+  transform: translateX(-100px) rotateY(-90deg);
+}
+
+ul > li:nth-of-type(3) {
+  transform: translateY(100px) rotateX(90deg);
+}
+
+ul > li:nth-of-type(4) {
+  transform: translateY(-100px) rotateX(90deg);
+  background: #a7cfdf;
+  background: linear-gradient(to right, #554531 0%, #ba8f57 100%);
+}
+
+ul > li:nth-of-type(5) {
+  transform: translateX(100px) rotateY(90deg);
+  background: #a7cfdf;
+  background: linear-gradient(to top, #554531 0%, #ba8f57 100%);
+}
+
+ul > li:nth-of-type(6) {
+  transform: translateZ(-100px);
+}
+
+/* svg mountain */
+svg {
+  position: absolute;
+  height: 12.375em;
+  width: 22.375em;
+  top: 50%;
+  left: 10%;
+  z-index: 2;
+}
+
 /* flare animation */
 @keyframes flareHigh {
   0% {
@@ -230,7 +404,7 @@ div:nth-of-type(3)::after {
   }
 }
 
-/* firework animation */
+/* firework from flare animation */
 @keyframes firework {
   0% {
     transform: translateY(0);
@@ -242,64 +416,55 @@ div:nth-of-type(3)::after {
 }
 
 @keyframes fireworkYellowRed {
-  0% { 
+  0% {
     transform: translate(-50%, 80vh);
     width: 0.5vmin;
     opacity: 1;
   }
-  50% { 
+
+  50% {
     width: 0.5vmin;
     opacity: 1;
   }
-  100% { 
-    width: 45vmin; 
-    opacity: 0; 
-  }
-}
 
-
-/* waves */
-/* div:nth-of-type(2),
-div:nth-of-type(2)::before,
-div:nth-of-type(2)::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 250vw;
-  height: 250vw;
-  margin-left: -125vw;
-  transform-origin: 50% 50%;
-  background-color: transparent;
-  border-radius: 38% 42%;
-  animation: spin 16s infinite linear;
-  mix-blend-mode: multiply;
-  background-color: #2ea2bf;
-}
-
-div:nth-of-type(2)::before {
-  width: 105%;
-  height: 95%;
-  margin-top: -125vw;
-  transform-origin: 49% 51%;
-  border-radius: 40% 38%;
-  animation: spin 13s infinite linear;
-  background-color: #35cff5;
-}
-
-div:nth-of-type(2)::after {
-  width: 102%;
-  height: 98%;
-  margin-top: -125vw;
-  transform-origin: 51% 49%;
-  border-radius: 48% 42%;
-  animation: spin 10s infinite linear;
-  background-color: #2e70d2;
-} */
-
-/* waves animation */
-/* @keyframes spin {
   100% {
-    transform: rotate(360deg);
+    width: 45vmin;
+    opacity: 0;
   }
-} */
+}
+
+/* firework second animation*/
+@keyframes firework-inner {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  10%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    box-shadow: -1.5rem 0rem 0 var(--whiteColor),
+      1.5rem 0rem 0 var(--whiteColor), 0rem -1.5rem 0 var(--whiteColor),
+      0rem 1.5rem 0 var(--whiteColor), 0.35rem -0.35rem 0 var(--whiteColor),
+      0.35rem 0.35rem 0 var(--whiteColor), -0.35rem -0.35rem 0 var(--whiteColor),
+      -0.35rem 0.35rem 0 var(--whiteColor);
+  }
+}
+
+@keyframes firework-outer {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  10%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    box-shadow: -4.5rem 0rem 0 #f03004, 4.5rem 0rem 0 #e780ae,
+      0rem -4.5rem 0 #f03004, 0rem 4.5rem 0 #e780ae, 3.35rem -3.35rem 0 #e780ae,
+      3.35rem 3.35rem 0 #f03004, -3.35rem -3.35rem 0 #e780ae,
+      -3.35rem 3.35rem 0 #e780ae;
+  }
+}
