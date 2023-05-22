@@ -1,0 +1,182 @@
+/* CSS Document - CSS to the rescue */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*********************/
+/* CUSTOM PROPERTIES */
+/*********************/
+:root {
+  --whiteColor: #fff;
+  --darkBlue: #171f56;
+  --bgButtonHover:#cbf3f8;
+  --sun: #ffd000 1%,#f9b700 40%,#f9b700 40%,#e06317 100%;
+  --bgDay: #93e7f0, #79ddf2, #60d2f5, #4ac6f7, #3db9f9, #3db9f9, #3db9f9,
+    #3db9f9, #4ac6f7, #F6D7B0, #FAE192, #FAE192, #FAE192;
+  --bgNight: #1d1d50, #1a1e53, #171f56, #132059, #0d215c, #042f68,
+    #003d72, #054b7b, #316989, #5c8597, #f8e9b6, #fae192, #f2d2a9, #f6d7b0;
+
+
+}
+
+/***************************/
+/* GENERAL STYLES ELEMENTS */
+/***************************/
+
+/* hide */
+h1, input {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 0.1em;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 0.3em;
+}
+
+div {
+  z-index: 100;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* Background */
+/* Background - Day */
+body>main>div:first-of-type {
+  position: relative;
+  height: 100vh;
+  background-image: linear-gradient(180deg, var(--bgDay));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 1;
+}
+
+/* Background - Night */
+body>main>div:first-of-type::after {
+  position: absolute;
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(to bottom, var(--bgNight));
+  transition: opacity 0.5s ease-out;
+  z-index: 2;
+  opacity: 0;
+}
+
+/* Form */
+body>main>form:first-of-type {
+  position: absolute;
+  top:3rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+/* Create start button*/
+body>main>form>label::before {
+  content: "Start animation";
+}
+
+/* Change button text from pause animation to ''*/
+body:has(:checked) form>label::before {
+  content: "";
+}
+
+/* Start animation button styling*/
+body>main>form>label {
+  display: inline-block;
+  content: "";
+  width: 15rem;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 0.3rem;
+  background-color: #93e7f0;
+  border: 0.125em solid var(--darkBlue);
+  color: var(--darkBlue);
+  cursor: pointer;
+}
+
+/* Change button text to pause animation*/
+body:has(#startAnimation:checked) form>label::after {
+  content: "Pause animation";
+}
+
+/* Pause button styling */
+body:has(#startAnimation:checked) main>form>label {
+  color: var(--whiteColor);
+  background-color: var(--darkBlue);
+  border: 0.125em solid var(--whiteColor);
+}
+
+main>form>label:hover,
+body:has(#startAnimation:checked) main>form>label:hover {
+  color: var(--darkBlue);
+  background-color: var(--bgButtonHover);
+}
+
+
+/* Start button checked - show night decor */
+body:has(#startAnimation:checked) main>div:first-of-type::after {
+  opacity: 1;
+}
+
+/* Create the sun */
+body>main>div:nth-of-type(2) {
+  position: absolute;
+  top: 2rem;
+  right: 20%;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-position: -175rem -6.5rem;
+  background-size: 180%;
+  background-image: radial-gradient(ellipse at center, var(--sun));
+  box-shadow: 0 0 0.625em 0.125em rgba(255, 107, 0, 0.4),
+  0 0 1.375em 0.6875em rgba(255, 203, 0, 0.13);
+  z-index: 1;
+}
+
+/*moon*/
+body>main>div:nth-of-type(2)::after {
+  margin: auto;
+  background-color: transparent;
+  height: 7em;
+  width: 7em;
+  border-radius: 50%;
+
+  box-shadow: 1em 0.3em 0em rgb(240, 184, 43);
+  position: absolute;
+  top: 3em;
+  left: 80%;
+  z-index: 2;
+  opacity: 0;
+}
+
+body:has(#startAnimation:checked) main>div:nth-of-type(2)::after {
+  opacity: 1;
+  z-index: 3;
+}
+
+
+/*********************/
+/* WEBSITE MODE */
+/*********************/
+@media (min-width:40em) {
+
+  /* Form */
+  body>main>form:first-of-type {
+    position: absolute;
+    left: 5%;
+    transform: translate(-5%, -50%);
+    z-index: 3;
+  }
+}
