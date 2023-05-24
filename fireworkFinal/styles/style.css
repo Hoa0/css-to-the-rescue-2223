@@ -191,10 +191,9 @@ body:has(#startAnimation:checked) main > div:nth-of-type(2)::after {
 svg {
   position: absolute;
   z-index: 3;
-  top: 60%;
-  left: 25%;
-  width: 30rem;
-  translate: ();
+  top: 65%;
+  left: 45%;
+  width: 20rem;
   transform: translate(-60%, -50%);
 }
 
@@ -209,14 +208,6 @@ svg > path:nth-of-type(3) {
 }
 svg > path:nth-of-type(4) {
   fill: #4d4040;
-}
-
-/* Form with flare item */
-main > form:nth-of-type(2) {
-  /* position: relative;
-  background-color: lightblue;
-  width: 20rem;
-  height: 30rem; */
 }
 
 /* Flare item - create the body */
@@ -235,6 +226,7 @@ main > form:nth-of-type(2) > label {
   offset-path: path(
     "m22.4,382.1c3-39.8,0-71.2-3.3-92.3-5.6-36.8-13.5-46.6-10.9-73.6,3.5-37.1,19.7-40.4,18.5-69.8-1.3-32.9-22-40.1-25.7-72.1C-.9,57.3,1.7,32.6,24.2.3"
   );
+  cursor: pointer;
   z-index: 3;
 }
 
@@ -311,6 +303,7 @@ main > form:nth-of-type(3) > label {
   top: 85%;
   left: 20%;
   background: linear-gradient(130deg, #801715 0%, #000000 100%);
+  cursor: pointer;
   z-index: 3;
 }
 
@@ -448,7 +441,7 @@ main > ul:nth-of-type(3) > li {
 }
 
 /* Cube circles */
-main > ul:nth-of-type(3) > li:nth-of-type(1)::before {
+main > ul:nth-of-type(3) > li:nth-child(1)::before {
   content: "";
   width: 20%;
   height: 20%;
@@ -461,32 +454,32 @@ main > ul:nth-of-type(3) > li:nth-of-type(1)::before {
 }
 
 /*cube sides*/
-main > ul:nth-of-type(3) > li:nth-of-type(1) {
+main > ul:nth-of-type(3) > li:nth-child(1) {
   transform: translateZ(6.25rem);
   background-color: #c37272;
 }
 
-main > ul:nth-of-type(3) > li:nth-of-type(2) {
+main > ul:nth-of-type(3) > li:nth-child(2) {
   transform: translateX(-6.25rem) rotateY(-90deg);
 }
 
-main > ul:nth-of-type(3) > li:nth-of-type(3) {
+main > ul:nth-of-type(3) > li:nth-child(3) {
   transform: translateY(6.25rem) rotateX(90deg);
 }
 
-main > ul:nth-of-type(3) > li:nth-of-type(4) {
+main > ul:nth-of-type(3) > li:nth-child(4) {
   transform: translateY(-6.25rem) rotateX(90deg);
   background: #a7cfdf;
   background: linear-gradient(to right, #554531 0%, #ba8f57 100%);
 }
 
-main > ul:nth-of-type(3) > li:nth-of-type(5) {
+main > ul:nth-of-type(3) > li:nth-child(5) {
   transform: translateX(6.25rem) rotateY(90deg);
   background: #a7cfdf;
   background: linear-gradient(to top, #554531 0%, #ba8f57 100%);
 }
 
-main > ul:nth-of-type(3) > li:nth-of-type(6) {
+main > ul:nth-of-type(3) > li:nth-child(6) {
   transform: translateZ(-6.25rem);
 }
 
@@ -586,11 +579,19 @@ main > ul:nth-of-type(3) > li:nth-of-type(6) {
 /* WEBSITE MODE */
 /*********************/
 @media (min-width: 40em) {
-  /* Form */
+  /* Form "day and night button"*/
   body > main > form:first-of-type {
     position: absolute;
     left: 5%;
     transform: translate(-5%, -50%);
     z-index: 3;
+  }
+
+  /* Rock */
+  main > svg {
+    position: absolute;
+    left: 30%;
+    top: 60%;
+    width: 30rem;
   }
 }
