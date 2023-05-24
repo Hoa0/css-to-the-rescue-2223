@@ -14,9 +14,14 @@
 /*********************/
 :root {
   --whiteColor: #fff;
-  --darkBlue: #171f56;
+  --darkBlue: #1a1e52;
+  --lightBlue: #93e7f0;
+  --red: #ff2727;
+  --brown: #554842;
   --bgButtonHover: #cbf3f8;
   --sun: #ffd000 1%, #f9b700 40%, #f9b700 40%, #e06317 100%;
+  --moon: #171f56, #132059;
+  --flare: #ff2727 40%, #fff 40% 66%, #ff2727 40%;
   --bgDay: #93e7f0, #79ddf2, #60d2f5, #4ac6f7, #3db9f9, #3db9f9, #3db9f9,
     #3db9f9, #4ac6f7, #f6d7b0, #fae192, #fae192, #fae192;
   --bgNight: #1d1d50, #1a1e53, #171f56, #132059, #0d215c, #042f68, #003d72,
@@ -39,12 +44,17 @@ input {
   width: 0.3em;
 }
 
+form,
+label,
+ul,
+li,
 div {
   z-index: 100;
 }
 
 body {
   font-family: sans-serif;
+  overflow: hidden;
 }
 
 /* Background */
@@ -77,20 +87,21 @@ body > main > form:first-of-type {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
+  /* top: 90vh; */
 }
 
 /* Create start button*/
-body > main > form > label::before {
-  content: "Start animation";
+body > main > form:first-of-type > label::before {
+  content: "Show night mode";
 }
 
-/* Change button text from pause animation to ''*/
-body:has(#startAnimation:checked) form > label::before {
+/* Change button text from "Show night mode" animation to ''*/
+body:has(#startAnimation:checked) form:first-of-type > label::before {
   content: "";
 }
 
-/* Start animation button styling*/
-body > main > form > label {
+/* day/ night button styling*/
+body > main > form:first-of-type > label {
   display: inline-block;
   content: "";
   width: 15rem;
@@ -98,26 +109,26 @@ body > main > form > label {
   text-align: center;
   font-weight: bold;
   border-radius: 0.3rem;
-  background-color: #93e7f0;
+  background-color: var(--lightBlue);
   border: 0.125em solid var(--darkBlue);
   color: var(--darkBlue);
   cursor: pointer;
 }
 
-/* Change button text to pause animation*/
-body:has(#startAnimation:checked) form > label::after {
-  content: "Pause animation";
+/* Change button text to " show day mode"*/
+body:has(#startAnimation:checked) form:first-of-type > label::after {
+  content: "Show day mode";
 }
 
-/* Pause button styling */
-body:has(#startAnimation:checked) main > form > label {
+/* "Show day mode" button styling */
+body:has(#startAnimation:checked) main > form:first-of-type > label {
   color: var(--whiteColor);
   background-color: var(--darkBlue);
   border: 0.125em solid var(--whiteColor);
 }
 
-main > form > label:hover,
-body:has(#startAnimation:checked) main > form > label:hover {
+main > form:first-of-type > label:hover,
+body:has(#startAnimation:checked) main > form:first-of-type > label:hover {
   color: var(--darkBlue);
   background-color: var(--bgButtonHover);
 }
@@ -131,7 +142,7 @@ body:has(#startAnimation:checked) main > div:first-of-type::after {
 body > main > div:nth-of-type(2)::before {
   content: "";
   position: absolute;
-  top: 2rem;
+  top: 6rem;
   right: 20%;
   width: 4rem;
   height: 4rem;
@@ -148,23 +159,20 @@ body > main > div:nth-of-type(2)::before {
 body > main > div:nth-of-type(2)::after {
   content: "";
   position: absolute;
-  top: 2rem;
+  top: 6rem;
   right: 20%;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background-color: #1a1e52;
+  /* background-color: var(--darkBlue); */
+  background-image: linear-gradient(to bottom, var(--moon));
   transition: opacity 0.5s ease-out;
   opacity: 0;
 }
 
-/* Checked - Change sun color to blue - night */
+/* Checked - Change sun */
 body:has(#startAnimation:checked) main > div:nth-of-type(2)::before {
-  background-image: radial-gradient(
-    ellipse at center,
-    #f9b700 40%,
-    #e06317 100%
-  );
+  background-image: radial-gradient(ellipse at center, var(--sun));
   box-shadow: none;
   opacity: 1;
   z-index: 3;
@@ -177,6 +185,313 @@ body:has(#startAnimation:checked) main > div:nth-of-type(2)::after {
   transition: all 1s;
   opacity: 1;
   z-index: 3;
+}
+
+/* Form with flare item */
+main > form:nth-of-type(2) {
+  /* position: relative;
+  background-color: lightblue;
+  width: 20rem;
+  height: 30rem; */
+}
+
+/* Flare item - create the body */
+main > form:nth-of-type(2) > label {
+  position: absolute;
+  content: "";
+  margin: 30vh auto;
+  height: 4rem;
+  width: 1.2rem;
+  left: 50%;
+  bottom: 0;
+  top: 0;
+  background-image: linear-gradient(var(--flare));
+  offset-rotate: auto 86deg;
+  offset-anchor: 50% 50%;
+  offset-path: path(
+    "m22.4,382.1c3-39.8,0-71.2-3.3-92.3-5.6-36.8-13.5-46.6-10.9-73.6,3.5-37.1,19.7-40.4,18.5-69.8-1.3-32.9-22-40.1-25.7-72.1C-.9,57.3,1.7,32.6,24.2.3"
+  );
+  z-index: 3;
+}
+
+/* Flare item - create the arrow */
+main > form:nth-of-type(2) > label::before {
+  content: "";
+  position: absolute;
+  top: -2.2rem;
+  left: -0.6rem;
+  border-top: 1.2rem solid transparent;
+  border-right: 1rem solid transparent;
+  border-bottom: 1.2rem solid var(--red);
+  border-left: 1.2rem solid transparent;
+  transform: scale(1.5);
+}
+
+/* Flare item - last */
+main > form:nth-of-type(2) > label::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 0.2rem);
+  width: 0.4rem;
+  height: 2rem;
+  background-color: var(--brown);
+  bottom: -2rem;
+  border-bottom-right-radius: 60%;
+  border-bottom-left-radius: 60%;
+}
+
+/*Checked flare, follow path */
+body:has(#startFlare:checked) main > form:nth-of-type(2) > label {
+  opacity: 1;
+  offset-anchor: 50% 50%; /* X and Y anchor*/
+  animation: move-flare 3s 0ms infinite alternate ease-in-out;
+  animation-iteration-count: 1;
+}
+
+/*Firework - flare */
+
+/* create second firework*/
+body:has(#startFlare:checked) ul:first-of-type > li:first-of-type {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: pink;
+  animation: firework-inner 1.8s both infinite;
+  animation-delay: 1.5s;
+  top: 20%;
+  left: 50%;
+  /* animation-play-state: paused; */
+  opacity: 1;
+  z-index: 6;
+}
+body:has(#startFlare:checked) :first-of-type > li:nth-of-type(2) {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  animation: firework-outer 2s both infinite;
+  animation-delay: 1.8s;
+  top: 20%;
+  left: 50%;
+  /* animation-play-state: paused; */
+  opacity: 1;
+  z-index: 6;
+}
+
+/* Create Cylinder body */
+main > form:nth-of-type(3) > label {
+  position: absolute;
+  width: 4.5em;
+  height: 3.25em;
+  top: 85%;
+  left: 20%;
+  background: linear-gradient(130deg, #801715 0%, #000000 100%);
+  z-index: 3;
+}
+
+/*Cylinder top*/
+main > form:nth-of-type(3) > label::before {
+  content: "";
+  position: absolute;
+  top: -0.325em;
+  width: 4.5em;
+  height: 0.7em;
+  background-color: rgb(207, 83, 104);
+  border-radius: 3.75em / 0.625em;
+}
+
+/*Cylinder bottom*/
+main > form:nth-of-type(3) > label::after {
+  content: "";
+  position: absolute;
+  top: 1em;
+  width: 4.5em;
+  height: 3.125em;
+  background: linear-gradient(130deg, #680c0a 0%, #000000 100%);
+  border-radius: 3.75em / 1.5625em;
+}
+
+/* Checked Cylinder*/
+body:has(#startCylinder:checked) main > form:nth-of-type(3) > label {
+  animation-name: cylinder-animation, boem-cylinder;
+  animation-duration: 1s, 0.3s;
+  animation-delay: 0s, 3s;
+  animation-iteration-count: 3, 1;
+  animation-fill-mode: none;
+}
+
+/*--------- Firework cylinder ------------------*/
+
+/* Firework cylinder - create position and body */
+main > ul:nth-of-type(2) {
+  position: absolute;
+  top: 25%;
+  left: 20%;
+}
+main > ul:nth-of-type(2) > li {
+  position: absolute;
+  left: -0.1rem;
+  bottom: 0;
+  width: 0.25rem;
+  height: 5rem;
+  transform-origin: 50% 100%;
+  /* background-color: darkblue; */
+  overflow: hidden;
+  z-index: 3;
+}
+
+main > ul:nth-of-type(2) > li:nth-child(1) {
+  transform: rotate(0deg) translateY(-0.9rem);
+}
+
+main > ul:nth-of-type(2) > li:nth-child(2) {
+  transform: rotate(30deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(3) {
+  transform: rotate(60deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(4) {
+  transform: rotate(90deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(5) {
+  transform: rotate(120deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(6) {
+  transform: rotate(150deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(7) {
+  transform: rotate(180deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(8) {
+  transform: rotate(210deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(9) {
+  transform: rotate(240deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(10) {
+  transform: rotate(270deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(11) {
+  transform: rotate(300deg) translateY(-0.9rem);
+}
+main > ul:nth-of-type(2) > li:nth-child(12) {
+  transform: rotate(330deg) translateY(-0.9rem);
+}
+
+body:has(#startCylinder:checked) main > ul:nth-of-type(2) > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2.5rem;
+  background-color: hotpink;
+  animation: cylinderFirework 1.5s ease-in-out infinite;
+  animation-delay: 3.2s;
+}
+body:has(#startCylinder:checked) main > ul:nth-of-type(2) > li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2.5rem;
+  background-color: pink;
+  animation: cylinderFirework 2.5s ease-in-out infinite;
+  animation-delay: 3.2s;
+}
+
+/*--- Flare path animation ---*/
+@keyframes move-flare {
+  0% {
+    offset-distance: 0%;
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+/*--- firework animation - flare ---*/
+@keyframes firework-inner {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  10%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    box-shadow: -1.5rem 0rem 0 var(--whiteColor),
+      1.5rem 0rem 0 var(--whiteColor), 0rem -1.5rem 0 var(--whiteColor),
+      0rem 1.5rem 0 var(--whiteColor), 0.35rem -0.35rem 0 var(--whiteColor),
+      0.35rem 0.35rem 0 var(--whiteColor), -0.35rem -0.35rem 0 var(--whiteColor),
+      -0.35rem 0.35rem 0 var(--whiteColor);
+  }
+}
+
+/* firework animation - flare */
+@keyframes firework-outer {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  10%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    box-shadow: -4.5rem 0rem 0 #f03004, 4.5rem 0rem 0 #e780ae,
+      0rem -4.5rem 0 #f03004, 0rem 4.5rem 0 #e780ae, 3.35rem -3.35rem 0 #e780ae,
+      3.35rem 3.35rem 0 #f03004, -3.35rem -3.35rem 0 #e780ae,
+      -3.35rem 3.35rem 0 #e780ae;
+  }
+}
+
+/*--- Cylinder bom animation ---*/
+@keyframes cylinder-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Cylinder boem bom animation */
+@keyframes boem-cylinder {
+  0% {
+    transform: scale(0.8);
+  }
+  99% {
+    transform: scale(5);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Cylinder firework animation */
+@keyframes cylinderFirework {
+  0% {
+    top: 100%;
+    transform: rotate(0deg);
+  }
+  50% {
+    top: -50%;
+    transform: rotate(20deg);
+  }
+  70%,
+  100% {
+    top: -50%;
+    transform: rotate(40deg);
+  }
 }
 
 /*********************/
