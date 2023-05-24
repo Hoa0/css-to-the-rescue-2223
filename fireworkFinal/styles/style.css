@@ -355,7 +355,7 @@ main > ul:nth-of-type(2) {
   left: 20%;
 }
 
-main > ul:nth-of-type(2) > li {
+ul > li {
   position: absolute;
   left: -0.1rem;
   bottom: 0;
@@ -367,44 +367,52 @@ main > ul:nth-of-type(2) > li {
   z-index: 3;
 }
 
-main > ul:nth-of-type(2) > li:nth-child(1) {
+ul > li:nth-child(1) {
   transform: rotate(0deg) translateY(-0.9rem);
 }
 
-main > ul:nth-of-type(2) > li:nth-child(2) {
+ul > li:nth-child(2) {
   transform: rotate(30deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(3) {
+
+ul > li:nth-child(3) {
   transform: rotate(60deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(4) {
+
+ul > li:nth-child(4) {
   transform: rotate(90deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(5) {
+
+ul > li:nth-child(5) {
   transform: rotate(120deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(6) {
+
+ul > li:nth-child(6) {
   transform: rotate(150deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(7) {
+ul > li:nth-child(7) {
   transform: rotate(180deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(8) {
+
+ul > li:nth-child(8) {
   transform: rotate(210deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(9) {
+ul > li:nth-child(9) {
   transform: rotate(240deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(10) {
+
+ul > li:nth-child(10) {
   transform: rotate(270deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(11) {
+
+ul > li:nth-child(11) {
   transform: rotate(300deg) translateY(-0.9rem);
 }
-main > ul:nth-of-type(2) > li:nth-child(12) {
+ul > li:nth-child(12) {
   transform: rotate(330deg) translateY(-0.9rem);
 }
 
+/*Cylinder checked - firework */
 body:has(#startCylinder:checked) main > ul:nth-of-type(2) > li::before {
   content: "";
   position: absolute;
@@ -412,7 +420,7 @@ body:has(#startCylinder:checked) main > ul:nth-of-type(2) > li::before {
   right: 0;
   top: 100%;
   height: 2.5rem;
-  background-color: hotpink;
+  background-color: #db0f83;
   animation: cylinderFirework 1.5s ease-in-out infinite;
   animation-delay: 3.2s;
 }
@@ -423,13 +431,13 @@ body:has(#startCylinder:checked) main > ul:nth-of-type(2) > li::after {
   right: 0;
   top: 100%;
   height: 2.5rem;
-  background-color: pink;
+  background-color: #f58cc7;
   animation: cylinderFirework 2.5s ease-in-out infinite;
   animation-delay: 3.2s;
 }
 
 /*--- Cube ---*/
-main > ul:nth-of-type(3) {
+main > form:nth-of-type(4) > label {
   transform-style: preserve-3d;
   transform: scale(0.3) rotateY(185deg) rotateX(110deg) rotateZ(315deg);
   position: absolute;
@@ -439,11 +447,13 @@ main > ul:nth-of-type(3) {
   left: 60%;
 }
 
-main > ul:nth-of-type(3):hover {
+/* Cube hover */
+main > form:nth-of-type(4) > label:hover {
   animation: hoverEffectCube 1s ease-in-out alternate 1.2s infinite;
 }
 
-main > ul:nth-of-type(3) > li {
+/* Cube body */
+main > form:nth-of-type(4) > label > span {
   width: 100%;
   height: 100%;
   background-color: #554531;
@@ -454,7 +464,7 @@ main > ul:nth-of-type(3) > li {
 }
 
 /* Cube circles */
-main > ul:nth-of-type(3) > li:nth-child(1)::before {
+main > form:nth-of-type(4) > label > span:nth-of-type(1)::before {
   content: "";
   width: 20%;
   height: 20%;
@@ -467,33 +477,116 @@ main > ul:nth-of-type(3) > li:nth-child(1)::before {
 }
 
 /*cube sides*/
-main > ul:nth-of-type(3) > li:nth-child(1) {
+main > form:nth-of-type(4) > label > span:nth-of-type(1) {
   transform: translateZ(6.25rem);
   background-color: #c37272;
 }
 
-main > ul:nth-of-type(3) > li:nth-child(2) {
+main > form:nth-of-type(4) > label > span:nth-of-type(2) {
   transform: translateX(-6.25rem) rotateY(-90deg);
 }
 
-main > ul:nth-of-type(3) > li:nth-child(3) {
+main > form:nth-of-type(4) > label > span:nth-of-type(3) {
   transform: translateY(6.25rem) rotateX(90deg);
 }
 
-main > ul:nth-of-type(3) > li:nth-child(4) {
+main > form:nth-of-type(4) > label > span:nth-of-type(4) {
   transform: translateY(-6.25rem) rotateX(90deg);
   background: #a7cfdf;
   background: linear-gradient(to right, #554531 0%, #ba8f57 100%);
 }
 
-main > ul:nth-of-type(3) > li:nth-child(5) {
+main > form:nth-of-type(4) > label > span:nth-of-type(5) {
   transform: translateX(6.25rem) rotateY(90deg);
   background: #a7cfdf;
   background: linear-gradient(to top, #554531 0%, #ba8f57 100%);
 }
 
-main > ul:nth-of-type(3) > li:nth-child(6) {
+main > form:nth-of-type(4) > label > span:nth-of-type(6) {
   transform: translateZ(-6.25rem);
+}
+
+/* Cube checked */
+body:has(#startCube:checked) main > form:nth-of-type(4) > label {
+  animation: cubeAnimate 2.5s ease-in-out infinite;
+  animation-delay: 1.2s;
+  animation-iteration-count: 2;
+}
+
+/* Firework from cube */
+/* Firework cube - create position and body */
+main > ul:nth-of-type(3) {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: scale(0.5);
+}
+
+body:has(#startCube:checked) main > ul:nth-of-type(3) > li::before,
+body:has(#startCube:checked) main > ul:nth-of-type(4) > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2.5rem;
+  background-image: linear-gradient(to top, #32a852, #86e39f, #13401f);
+  animation: cylinderFirework 1.5s ease-in-out infinite;
+  animation-delay: 3.2s;
+  animation-iteration-count: 4;
+}
+body:has(#startCube:checked) main > ul:nth-of-type(3) > li::after,
+body:has(#startCube:checked) main > ul:nth-of-type(4) > li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2.5rem;
+  background-image: linear-gradient(to top, #f2e0b3, #dbaf40, #ffb700);
+  animation: cylinderFirework 2.5s ease-in-out infinite;
+  animation-delay: 3.2s;
+  animation-iteration-count: 4;
+}
+/* second cube firework */
+main > ul:nth-of-type(4) {
+  position: absolute;
+  top: 60%;
+  left: 80%;
+  transform: scale(0.7);
+}
+
+main > ul:nth-of-type(5) {
+  position: absolute;
+  top: 40%;
+  left: 80%;
+  transform: scale(0.4);
+}
+
+body:has(#startCube:checked) main > ul:nth-of-type(5) > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2.5rem;
+  background-image: linear-gradient(to top, #ce30be, #752e5f, #ff008c);
+  animation: cylinderFirework 3.5s ease-in-out infinite;
+  animation-delay: 3.2s;
+  animation-iteration-count: 4;
+}
+
+body:has(#startCube:checked) main > ul:nth-of-type(5) > li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2.5rem;
+  background-image: linear-gradient(to top, #f2e0b3, #dbaf40, #ffb700);
+  animation: cylinderFirework 4.5s ease-in-out infinite;
+  animation-delay: 3.2s;
+  animation-iteration-count: 4;
 }
 
 /*--- Flare path animation ---*/
@@ -564,14 +657,15 @@ main > ul:nth-of-type(3) > li:nth-child(6) {
     transform: scale(0.8);
   }
   99% {
-    transform: scale(5);
+    top: -50%;
+    transform: rotate(20deg) scale(15);
   }
   100% {
     opacity: 0;
   }
 }
 
-/* Cylinder firework animation */
+/* Cylinder & cube firework animation */
 @keyframes cylinderFirework {
   0% {
     top: 100%;
@@ -585,6 +679,19 @@ main > ul:nth-of-type(3) > li:nth-child(6) {
   100% {
     top: -50%;
     transform: rotate(40deg);
+  }
+}
+
+/* Cube animation */
+@keyframes cubeAnimate {
+  from {
+    /* transform: rotateY(45deg); */
+    transform: scale(0.2) rotate(39deg) rotateX(64deg) rotateY(321deg)
+      rotateZ(128deg);
+  }
+  to {
+    transform: scale(0.2) rotate(55deg) rotateX(24deg) rotateY(301deg)
+      rotateZ(128deg);
   }
 }
 
