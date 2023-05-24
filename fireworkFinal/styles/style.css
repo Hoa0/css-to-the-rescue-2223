@@ -229,6 +229,9 @@ main > form:nth-of-type(2) > label {
   cursor: pointer;
   z-index: 3;
 }
+main > form:nth-of-type(2) > label:hover {
+  animation: hoverEffect 0.6s ease-in-out alternate 0.4s infinite;
+}
 
 /* Flare item - create the arrow */
 main > form:nth-of-type(2) > label::before {
@@ -307,6 +310,11 @@ main > form:nth-of-type(3) > label {
   z-index: 3;
 }
 
+/* Create Cylinder body hover */
+main > form:nth-of-type(3) > label:hover {
+  animation: hoverEffect 0.6s ease-in-out alternate 0.4s infinite;
+}
+
 /*Cylinder top*/
 main > form:nth-of-type(3) > label::before {
   content: "";
@@ -346,6 +354,7 @@ main > ul:nth-of-type(2) {
   top: 25%;
   left: 20%;
 }
+
 main > ul:nth-of-type(2) > li {
   position: absolute;
   left: -0.1rem;
@@ -428,6 +437,10 @@ main > ul:nth-of-type(3) {
   height: 12.5em;
   top: 70%;
   left: 60%;
+}
+
+main > ul:nth-of-type(3):hover {
+  animation: hoverEffectCube 1s ease-in-out alternate 1.2s infinite;
 }
 
 main > ul:nth-of-type(3) > li {
@@ -572,6 +585,19 @@ main > ul:nth-of-type(3) > li:nth-child(6) {
   100% {
     top: -50%;
     transform: rotate(40deg);
+  }
+}
+
+/* hover */
+@keyframes hoverEffect {
+  100% {
+    transform: rotateZ(-15deg);
+  }
+}
+
+@keyframes hoverEffectCube {
+  100% {
+    transform: rotateZ(-5deg) scale(0.2);
   }
 }
 
